@@ -2,17 +2,13 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
+baseURL = "https://www.baiscope.lk/"
+tv_series_url_slug_base = "prison-break"
+episodes_per_season = [22,22,13,22,9]
+starting_season = 1
 
 def setup():
     print("Setting up...")
-    baseURL = "https://www.baiscope.lk/"
-    tv_series_url_slug_base = "squid-game"
-
-    # Array for episodes in each season
-    episodes_per_season = [7]
-
-    starting_season = 2  # Starting season
-
     for season_index, total_episodes in enumerate(episodes_per_season):
         current_season = starting_season + season_index
         for episode in range(1, total_episodes + 1):
@@ -58,7 +54,7 @@ def scrape_and_download(baseURL, tv_series_url_slug, season, episode):
         return
 
     # Save the subtitle file
-    file_name = f"Squid_Game_S{season:02d}_E{episode:02d}_Sinhala_Subtitles.srt"
+    file_name = f"{tv_series_url_slug_base}_S{season:02d}_E{episode:02d}_Sinhala_Subtitles.srt"
     save_subtitle_file(file_name, subtitle_response)
 
 
